@@ -1,19 +1,35 @@
-const peso = Number(prompt("Digite seu peso: "))
-const altura = Number(prompt("Digite sua altura: "))
-const imc = parseInt((peso / altura ** 2))
+class Pessoa{
+    nome;
+    peso;
+    altura;
 
-console.log(imc)
+    constructor(nome, peso, altura){
+        this.nome = nome;
+        this.peso = peso
+        this.altura = altura
+    }
 
-if(imc < 18){
-    alert(`Seu imc é ${imc} você está magro`)
-}else if(imc > 18.5 && imc < 24.9){
-    alert(`Seu imc é ${imc} você está normal`)
-}else if(imc > 24.9 && imc < 29.9){
-    alert(`Sem imc é ${imc} você está com sobrepeso`)
-}else if(imc > 29.9 && imc < 39.9){
-    alert(`Sem imc é ${imc} você está obeso`)
-}else if(imc > 40){
-    alert(`Sem imc é ${imc} você está com obesidade gravissima, procure um médico imediatamente!!!`)
-}else{
-    alert("Algo deu errado")
+    calcularImc(){
+        return this.peso / (this.altura ** 2)
+    }
+    classificarImc(){
+        const imc = this.calcularImc();
+        if(imc < 18.5){
+            return ('Abaixo do Peso')
+        }else if(imc >= 18.5 && imc < 25){
+            return ('Peso normal')
+        }else if(imc >= 25 && imc < 30){
+            return ('Acima do peso')
+        }else if(imc >= 30 && imc < 40){
+            return ('Obeso')
+        }else{
+            return('Obesidade Grave')
+        }
+    }
 }
+
+const jose = new Pessoa("Jose", 100, 1.75)
+console.log(jose.calcularImc(), jose.classificarImc())
+
+const will = new Pessoa("Willian", 90, 1.80)
+console.log(will.calcularImc(), will.classificarImc())
